@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TestApi.Models;
+using TestApi.Service;
 
 namespace TestApi.Controllers
 {
@@ -10,6 +12,13 @@ namespace TestApi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private ITestService _TestService;
+
+        public ValuesController()
+        {
+            _TestService = new TestService();
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -24,22 +33,22 @@ namespace TestApi.Controllers
             return "value";
         }
 
-        // POST api/values
+        [HttpGet]
+        [Route("Get")]
+        public List<PersonsModel> GetValue()
+        {
+            return _TestService.GetValue();
+        }
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("Insert")]
+        public IActionResult AddPerson(PersonsModel req)
         {
+            _TestService.AddPerson(req);
+            return Ok();
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+
     }
 }

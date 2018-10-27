@@ -11,6 +11,10 @@ namespace TestApi
 {
     public class Startup
     {
+
+        //วิธีเชื่อมต่อ DB https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/existing-db
+        //วิธีเชื่อมต่อ Swagger UI  https://www.youtube.com/watch?v=qlEZE1K5BI4
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;

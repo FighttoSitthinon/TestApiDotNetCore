@@ -48,6 +48,14 @@ namespace TestApi.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("Update")]
+        public IActionResult UpdatePerson(PersonsModel req)
+        {
+            _TestService.EditPerson(req);
+            return Ok();
+        }
+
 
 
     }

@@ -6,6 +6,7 @@ namespace TestApi.Models
 {
     public partial class TestApi01Context : DbContext
     {
+
         public TestApi01Context()
         {
         }

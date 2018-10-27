@@ -12,6 +12,8 @@ namespace TestApi.Service
         List<PersonsModel> GetValue();
 
         void AddPerson(PersonsModel req);
+
+        void EditPerson(PersonsModel req);
     }
 
     public class TestService : ITestService
@@ -40,6 +42,18 @@ namespace TestApi.Service
                 LastName = req.LastName
             };
             _ctx.Persons.Add(newReq);
+            _ctx.SaveChanges();
+        }
+
+        public void EditPerson(PersonsModel req)
+        {
+            var result = _ctx.Persons.Where(x => x.PersonID == req.PersonID).FirstOrDefault();
+
+            result.Address = req.Address;
+            result.City = req.City;
+            result.FirstName = req.FirstName;
+            result.LastName = req.LastName;
+
             _ctx.SaveChanges();
         }
     }
